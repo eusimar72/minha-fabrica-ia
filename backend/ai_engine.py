@@ -92,41 +92,38 @@ class ProductFactoryAI:
         """
         return self._get_response(prompt)
 
-    # --- NOVO MÓDULO VÍDEO ÚNICO (CONSISTÊNCIA VISUAL V2) ---
+    # --- NOVO MÓDULO VÍDEO ÚNICO (CONSISTÊNCIA VISUAL V3 - HIPERREALISTA) ---
     def generate_single_video_package(self, video_topic, tone):
         prompt = f"""
-        Atue como um Diretor de Cinema premiado, especialista em Continuidade Visual e Storytelling.
+        Atue como um Diretor de Cinema premiado.
         Objetivo: Criar um pacote completo para um vídeo viral sobre: '{video_topic}'.
         Tom: '{tone}'.
 
-        IMPORTANTE: O foco total é a CONSISTÊNCIA VISUAL.
+        IMPORTANTE: O estilo visual DEVE ser OBRIGATORIAMENTE: Hyperrealistic, Cinematic 8k, Photorealistic, Highly Detailed.
 
         Siga esta estrutura rigorosamente:
 
-        SEÇÃO 1: FICHA TÉCNICA (Visual Reference)
+        SEÇÃO 1: FICHA TÉCNICA
         - Defina o Personagem Principal (descreva roupas, cores, rosto, idade).
         - Defina o Cenário Principal (iluminação, época, clima, cores).
-        - Defina o Estilo Artístico (ex: Cinematic, Pixar Style, Realistic 8k).
 
         SEÇÃO 2: ROTEIRO E DIREÇÃO
         - Título Viral.
         - Roteiro Cena-a-Cena (5 cenas chave).
 
-        SEÇÃO 3: FÁBRICA VISUAL (PROMPTS DE CONTINUIDADE)
+        SEÇÃO 3: FÁBRICA VISUAL (PROMPTS DE IMAGEM)
         - Gere 5 PROMPTS DE IMAGEM (Midjourney/Bing) em INGLÊS.
         
-        ⚠️ REGRA DE OURO (CRUCIAL):
-        NÃO USE PLACEHOLDERS COMO '[PERSONAGEM_MAYA]' OU '[CENÁRIO]'.
-        VOCÊ DEVE ESCREVER A DESCRIÇÃO FÍSICA COMPLETA EM CADA PROMPT, REPETINDO TUDO.
-        
-        Exemplo ERRADO: "[PERSONAGEM_MAYA] is running in [CENÁRIO]."
-        Exemplo CERTO: "A small 6-year-old girl with blonde hair in a red dress (Maya) is running in a dark forest with blue fog."
+        ⚠️ REGRA DE OURO 1 (ESTILO):
+        COMECE TODO PROMPT COM: "Hyperrealistic, Cinematic 8k, Photorealistic, Highly Detailed, ..."
 
-        Repita a descrição completa do personagem (roupa, rosto, cor) e do cenário em CADA um dos 5 prompts.
+        ⚠️ REGRA DE OURO 2 (CONSISTÊNCIA):
+        NÃO USE PLACEHOLDERS. Repita a descrição física completa do personagem e do cenário em CADA linha.
 
         SEÇÃO 4: PROMPTS DE VÍDEO (Runway/Pika)
         - Gere 5 PROMPTS DE VÍDEO em INGLÊS.
-        - Siga a mesma REGRA DE OURO: Descreva o personagem visualmente em cada linha, sem usar atalhos.
+        - COMECE COM: "Hyperrealistic, Cinematic 8k..."
+        - Repita a descrição visual completa.
 
         SEÇÃO 5: METADADOS (SEO)
         - Descrição, Hashtags e Tags.
