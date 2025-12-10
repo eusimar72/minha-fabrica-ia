@@ -13,7 +13,8 @@ st.set_page_config(
 if 'generated_content' not in st.session_state:
     st.session_state.generated_content = {
         'ebook': None, 'copy': None, 'emails': None, 'prompts': None, # Ebook
-        'channel_id': None, 'scripts': None # Canal Dark
+        'channel_id': None, 'scripts': None, # Canal Dark (Novo)
+        'video_package': None # Vídeo Único
     }
 
 # Header Principal
@@ -74,34 +75,59 @@ if mode == "📘 Fábrica de Ebooks":
 elif mode == "🎬 Fábrica de Canal Dark":
     st.header("🎬 Criador de Canais Virais")
     
-    col1, col2 = st.columns(2)
-    with col1:
-        dark_niche = st.text_input("Tema do Canal", placeholder="Ex: Curiosidades Históricas, Estoicismo, Crimes Reais")
-    with col2:
-        dark_tone = st.selectbox("Estilo do Vídeo", ["Narrativa Épica", "Rápido e Dinâmico (TikTok)", "Misterioso/Suspense", "Educativo"], key="dark_tone")
-    
-    if st.button("🎥 Gerar Identidade & Roteiros", type="primary"):
-        if not api_key:
-            st.error("Precisa da API Key!")
-        else:
-            try:
-                ai = ProductFactoryAI(api_key)
-                with st.spinner("🧠 Criando Identidade do Canal (Nomes, Bio, Logo)..."):
-                    st.session_state.generated_content['channel_id'] = ai.generate_channel_identity(dark_niche)
-                
-                with st.spinner("✍️ Escrevendo 5 Roteiros Virais..."):
-                    st.session_state.generated_content['scripts'] = ai.generate_viral_scripts(dark_niche, dark_tone)
-                st.success("Canal Dark Planejado!")
-            except Exception as e:
-                st.error(f"Erro: {e}")
+    # Sub-menu (Radio horizontal ou selectbox)
+    dark_mode = st.radio("Escolha o objetivo:", ["🆕 Criar Novo Canal (Identidade)", "📹 Gerar Vídeo Viral Específico"], horizontal=True)
 
-    # Exibição Canal Dark
-    if st.session_state.generated_content['channel_id']:
-        t1, t2 = st.tabs(["🆔 Identidade Visual & Branding", "📜 5 Roteiros Virais"])
-        with t1: 
-            st.subheader("Identidade do Canal")
-            st.markdown(st.session_state.generated_content['channel_id'])
-            st.info("Copie os prompts de Logo e Banner e use no Bing Image Creator.")
-        with t2: 
-            st.subheader("Roteiros de Vídeo")
-            st.markdown(st.session_state.generated_content['scripts'])
+    if dark_mode == "🆕 Criar Novo Canal (Identidade)":
+        col1, col2 = st.columns(2)
+        with col1:
+            dark_niche = st.text_input("Nicho do Canal", placeholder="Ex: Curiosidades Históricas")
+        with col2:
+            dark_tone = st.selectbox("Estilo", ["Narrativa Épica", "Rápido (TikTok)", "Misterioso"], key="dark_tone_id")
+        
+        if st.button("🚀 Gerar Identidade do Canal", type="primary"):
+            if not api_key:
+                st.error("Precisa da API Key!")
+            else:
+                try:
+                    ai = ProductFactoryAI(api_key)
+                    with st.spinner("🧠 Criando Identidade..."):
+                        st.session_state.generated_content['channel_id'] = ai.generate_channel_identity(dark_niche)
+                    with st.spinner("📜 Criando Primeiras Ideias..."):
+                        st.session_state.generated_content['scripts'] = ai.generate_viral_scripts(dark_niche, dark_tone)
+                    st.success("Canal Criado!")
+                except Exception as e:
+                    st.error(f"Erro: {e}")
+
+        # Exibição Identidade
+        if st.session_state.generated_content['channel_id']:
+            t1, t2 = st.tabs(["🆔 Identidade & Branding", "💡 Ideias Iniciais"])
+            with t1: st.markdown(st.session_state.generated_content['channel_id'])
+            with t2: st.markdown(st.session_state.generated_content['scripts'])
+
+    elif dark_mode == "📹 Gerar Vídeo Viral Específico":
+        st.info("Aqui você gera TUDO para um vídeo único: Roteiro, Tags, Descrição e Prompts Visuais.")
+        col1, col2 = st.columns(2)
+        with col1:
+            video_topic = st.text_input("Tema do Vídeo", placeholder="Ex: O Burro que Salvou a Criança")
+        with col2:
+            video_tone = st.selectbox("Estilo", ["Emocionante", "Curioso/Fatos", "Terror/Suspense", "Motivacional"], key="dark_tone_vid")
+            
+        if st.button("🎥 Gerar Pacote de Vídeo Completo", type="primary"):
+            if not api_key:
+                st.error("Precisa da API Key!")
+            else:
+                try:
+                    ai = ProductFactoryAI(api_key)
+                    with st.spinner("🎬 Produzindo Roteiro, SEO e Prompts..."):
+                        st.session_state.generated_content['video_package'] = ai.generate_single_video_package(video_topic, video_tone)
+                    st.success("Vídeo Pronto para Produção!")
+                except Exception as e:
+                    st.error(f"Erro: {e}")
+
+        # Exibição Vídeo Único
+        if st.session_state.generated_content['video_package']:
+            st.markdown("---")
+            st.subheader("📦 Pacote de Produção do Vídeo")
+            st.markdown(st.session_state.generated_content['video_package'])
+            st.download_button("📥 Baixar Pacote Completo", st.session_state.generated_content['video_package'], file_name="video_package.md")
