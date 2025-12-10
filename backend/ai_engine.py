@@ -92,29 +92,40 @@ class ProductFactoryAI:
         """
         return self._get_response(prompt)
 
-    # --- NOVO MÓDULO VÍDEO ÚNICO (O Burro que salvou a criança) ---
+    # --- NOVO MÓDULO VÍDEO ÚNICO (CONSISTÊNCIA VISUAL) ---
     def generate_single_video_package(self, video_topic, tone):
         prompt = f"""
-        Atue como um Diretor de Cinema e Estrategista Viral de YouTube/TikTok.
-        Crie o PACOTE DE PRODUÇÃO COMPLETO para um único vídeo sobre: '{video_topic}'.
+        Atue como um Diretor de Cinema premiado, especialista em Continuidade Visual e Storytelling.
+        Objetivo: Criar um pacote completo para um vídeo viral sobre: '{video_topic}'.
         Tom: '{tone}'.
 
-        A saída deve conter EXATAMENTE estas 3 seções:
+        IMPORTANTE: O foco total é a CONSISTÊNCIA VISUAL. Os personagens e cenários devem ser idênticos em todas as cenas geradas.
 
-        SEÇÃO 1: ROTEIRO E DIREÇÃO
-        - Título Viral (Clickbait ético).
-        - Roteiro Cena-a-Cena (Dividido em: Gancho, Desenvolvimento 1, Clímax, Resolução, CTA).
-        - Para cada cena, descreva o áudio (narração) e o visual.
+        Siga esta estrutura rigorosamente:
 
-        SEÇÃO 2: METADADOS (SEO)
-        - Descrição Otimizada para YouTube (com palavras-chave).
-        - 30 Hashtags virais.
-        - 20 Tags para o canal (separadas por vírgula).
+        SEÇÃO 1: FICHA TÉCNICA (CONSISTÊNCIA)
+        - Defina o Personagem Principal (descreva roupas, cores, rosto, idade). Use tags como [PERSONAGEM_A].
+        - Defina o Cenário Principal (iluminação, época, clima, cores). Use tags como [CENÁRIO_PRINCIPAL].
+        - Defina o Estilo Artístico (ex: Cinematic, Pixar Style, Realistic 8k, Dark Moody).
 
-        SEÇÃO 3: FÁBRICA VISUAL (PROMPTS)
-        - Crie 5 PROMPTS DE IMAGEM (para Midjourney/Bing) correspondentes às 5 cenas principais do roteiro. (Em Inglês).
-        - Crie 5 PROMPTS DE VÍDEO (para Runway/Pika/Sora) correspondentes às mesmas cenas, descrevendo movimento de câmera e ação. (Em Inglês).
+        SEÇÃO 2: ROTEIRO E DIREÇÃO
+        - Título Viral.
+        - Roteiro Cena-a-Cena (5 cenas chave). Inclua Narração e Descrição Visual.
 
-        Formate em Markdown, usando separadores claros.
+        SEÇÃO 3: FÁBRICA VISUAL (PROMPTS DE CONTINUIDADE)
+        - Gere 5 PROMPTS DE IMAGEM (Midjourney/Bing) em INGLÊS.
+        - Em CADA prompt, você DEVE repetir a descrição física completa do personagem e do cenário definidos na Seção 1.
+        - Comece cada prompt com o Estilo Artístico definido.
+        - Exemplo de estrutura do prompt: "[Estilo Artístico], [Descrição Completa do Personagem] is doing [Ação da Cena], inside [Descrição Completa do Cenário], cinematic lighting, --ar 9:16".
+
+        SEÇÃO 4: PROMPTS DE VÍDEO (Runway/Pika)
+        - Gere 5 PROMPTS DE VÍDEO em INGLÊS baseados nas mesmas cenas.
+        - Foque no movimento (ex: "Slow zoom in on [Personagem]...", "Tracking shot of...").
+        - Mantenha a descrição visual consistente.
+
+        SEÇÃO 5: METADADOS (SEO)
+        - Descrição, Hashtags e Tags.
+
+        Formate em Markdown.
         """
         return self._get_response(prompt)
