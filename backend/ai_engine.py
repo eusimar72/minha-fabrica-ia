@@ -92,36 +92,41 @@ class ProductFactoryAI:
         """
         return self._get_response(prompt)
 
-    # --- NOVO MÓDULO VÍDEO ÚNICO (CONSISTÊNCIA VISUAL) ---
+    # --- NOVO MÓDULO VÍDEO ÚNICO (CONSISTÊNCIA VISUAL V2) ---
     def generate_single_video_package(self, video_topic, tone):
         prompt = f"""
         Atue como um Diretor de Cinema premiado, especialista em Continuidade Visual e Storytelling.
         Objetivo: Criar um pacote completo para um vídeo viral sobre: '{video_topic}'.
         Tom: '{tone}'.
 
-        IMPORTANTE: O foco total é a CONSISTÊNCIA VISUAL. Os personagens e cenários devem ser idênticos em todas as cenas geradas.
+        IMPORTANTE: O foco total é a CONSISTÊNCIA VISUAL.
 
         Siga esta estrutura rigorosamente:
 
-        SEÇÃO 1: FICHA TÉCNICA (CONSISTÊNCIA)
-        - Defina o Personagem Principal (descreva roupas, cores, rosto, idade). Use tags como [PERSONAGEM_A].
-        - Defina o Cenário Principal (iluminação, época, clima, cores). Use tags como [CENÁRIO_PRINCIPAL].
-        - Defina o Estilo Artístico (ex: Cinematic, Pixar Style, Realistic 8k, Dark Moody).
+        SEÇÃO 1: FICHA TÉCNICA (Visual Reference)
+        - Defina o Personagem Principal (descreva roupas, cores, rosto, idade).
+        - Defina o Cenário Principal (iluminação, época, clima, cores).
+        - Defina o Estilo Artístico (ex: Cinematic, Pixar Style, Realistic 8k).
 
         SEÇÃO 2: ROTEIRO E DIREÇÃO
         - Título Viral.
-        - Roteiro Cena-a-Cena (5 cenas chave). Inclua Narração e Descrição Visual.
+        - Roteiro Cena-a-Cena (5 cenas chave).
 
         SEÇÃO 3: FÁBRICA VISUAL (PROMPTS DE CONTINUIDADE)
         - Gere 5 PROMPTS DE IMAGEM (Midjourney/Bing) em INGLÊS.
-        - Em CADA prompt, você DEVE repetir a descrição física completa do personagem e do cenário definidos na Seção 1.
-        - Comece cada prompt com o Estilo Artístico definido.
-        - Exemplo de estrutura do prompt: "[Estilo Artístico], [Descrição Completa do Personagem] is doing [Ação da Cena], inside [Descrição Completa do Cenário], cinematic lighting, --ar 9:16".
+        
+        ⚠️ REGRA DE OURO (CRUCIAL):
+        NÃO USE PLACEHOLDERS COMO '[PERSONAGEM_MAYA]' OU '[CENÁRIO]'.
+        VOCÊ DEVE ESCREVER A DESCRIÇÃO FÍSICA COMPLETA EM CADA PROMPT, REPETINDO TUDO.
+        
+        Exemplo ERRADO: "[PERSONAGEM_MAYA] is running in [CENÁRIO]."
+        Exemplo CERTO: "A small 6-year-old girl with blonde hair in a red dress (Maya) is running in a dark forest with blue fog."
+
+        Repita a descrição completa do personagem (roupa, rosto, cor) e do cenário em CADA um dos 5 prompts.
 
         SEÇÃO 4: PROMPTS DE VÍDEO (Runway/Pika)
-        - Gere 5 PROMPTS DE VÍDEO em INGLÊS baseados nas mesmas cenas.
-        - Foque no movimento (ex: "Slow zoom in on [Personagem]...", "Tracking shot of...").
-        - Mantenha a descrição visual consistente.
+        - Gere 5 PROMPTS DE VÍDEO em INGLÊS.
+        - Siga a mesma REGRA DE OURO: Descreva o personagem visualmente em cada linha, sem usar atalhos.
 
         SEÇÃO 5: METADADOS (SEO)
         - Descrição, Hashtags e Tags.
