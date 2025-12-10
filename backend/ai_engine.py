@@ -91,3 +91,30 @@ class ProductFactoryAI:
         Separe bem os roteiros. Formate em Markdown.
         """
         return self._get_response(prompt)
+
+    # --- NOVO MÓDULO VÍDEO ÚNICO (O Burro que salvou a criança) ---
+    def generate_single_video_package(self, video_topic, tone):
+        prompt = f"""
+        Atue como um Diretor de Cinema e Estrategista Viral de YouTube/TikTok.
+        Crie o PACOTE DE PRODUÇÃO COMPLETO para um único vídeo sobre: '{video_topic}'.
+        Tom: '{tone}'.
+
+        A saída deve conter EXATAMENTE estas 3 seções:
+
+        SEÇÃO 1: ROTEIRO E DIREÇÃO
+        - Título Viral (Clickbait ético).
+        - Roteiro Cena-a-Cena (Dividido em: Gancho, Desenvolvimento 1, Clímax, Resolução, CTA).
+        - Para cada cena, descreva o áudio (narração) e o visual.
+
+        SEÇÃO 2: METADADOS (SEO)
+        - Descrição Otimizada para YouTube (com palavras-chave).
+        - 30 Hashtags virais.
+        - 20 Tags para o canal (separadas por vírgula).
+
+        SEÇÃO 3: FÁBRICA VISUAL (PROMPTS)
+        - Crie 5 PROMPTS DE IMAGEM (para Midjourney/Bing) correspondentes às 5 cenas principais do roteiro. (Em Inglês).
+        - Crie 5 PROMPTS DE VÍDEO (para Runway/Pika/Sora) correspondentes às mesmas cenas, descrevendo movimento de câmera e ação. (Em Inglês).
+
+        Formate em Markdown, usando separadores claros.
+        """
+        return self._get_response(prompt)
