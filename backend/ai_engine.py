@@ -5,7 +5,7 @@ class ProductFactoryAI:
     def __init__(self, api_key):
         self.api_key = api_key
         genai.configure(api_key=self.api_key)
-        self.model = genai.GenerativeModel('gemini-pro')
+        self.model = genai.GenerativeModel('gemini-1.5-flash')
 
     def _get_response(self, prompt):
         try:
