@@ -76,7 +76,7 @@ elif mode == "🎬 Fábrica de Canal Dark":
     st.header("🎬 Criador de Canais Virais")
     
     # Sub-menu (Radio horizontal ou selectbox)
-    dark_mode = st.radio("Escolha o objetivo:", ["🆕 Criar Novo Canal (Identidade)", "📹 Gerar Vídeo Viral Específico"], horizontal=True)
+   dark_mode = st.radio("Escolha o objetivo:", ["🆕 Criar Novo Canal (Identidade)", "🔥 Gerar Vídeo Viral Específico (ATUALIZADO)"], horizontal=True)
 
     if dark_mode == "🆕 Criar Novo Canal (Identidade)":
         col1, col2 = st.columns(2)
@@ -105,7 +105,7 @@ elif mode == "🎬 Fábrica de Canal Dark":
             with t1: st.markdown(st.session_state.generated_content['channel_id'])
             with t2: st.markdown(st.session_state.generated_content['scripts'])
 
-    elif dark_mode == "🔥 Gerar Vídeo Viral Específico (ATUALIZADO)":
+     elif dark_mode == "🔥 Gerar Vídeo Viral Específico (ATUALIZADO)":
         st.info("Aqui você gera TUDO para um vídeo único: Roteiro, Tags, Descrição e Prompts Visuais.")
         col1, col2 = st.columns(2)
         with col1:
