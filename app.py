@@ -105,7 +105,7 @@ elif mode == "🎬 Fábrica de Canal Dark":
             with t1: st.markdown(st.session_state.generated_content['channel_id'])
             with t2: st.markdown(st.session_state.generated_content['scripts'])
 
-    elif dark_mode == "📹 Gerar Vídeo Viral Específico":
+    elif dark_mode == "🔥 Gerar Vídeo Viral Específico (ATUALIZADO)":
         st.info("Aqui você gera TUDO para um vídeo único: Roteiro, Tags, Descrição e Prompts Visuais.")
         col1, col2 = st.columns(2)
         with col1:
